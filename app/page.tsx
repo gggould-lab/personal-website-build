@@ -43,8 +43,8 @@ export default function Home() {
         <About />
         <Education />
         <Experience />
-        <Projects />
         <Leadership />
+        <Projects />
         <Skills />
         <Contact />
         <footer className="border-t border-line py-10 text-sm text-zinc-500">
