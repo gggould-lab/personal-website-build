@@ -21,11 +21,13 @@ function EmText({ text }: { text: string }) {
 }
 
 function PointText({ text }: { text: string }) {
-  if (text.startsWith("主页跳转：http")) {
-    const url = text.replace("主页跳转：", "");
+  const cleanText = text.replace(/\*\*/g, "");
+  if (cleanText.startsWith("主页跳转：http")) {
+    const url = cleanText.replace("主页跳转：", "");
     return (
       <>
-        <span>主页跳转：</span>
+        <strong className="font-semibold text-white">主页跳转</strong>
+        <span>：</span>
         <a href={url} target="_blank" rel="noreferrer" className="text-cyan-200 underline decoration-cyan-400/40 underline-offset-4 transition hover:text-cyan-100">小红书主页</a>
       </>
     );
