@@ -73,7 +73,7 @@ function Hero() {
           意向城市：{profile.expectedCities}
         </div>
         <div className="mt-6 grid gap-2.5 sm:mt-8 sm:flex sm:flex-wrap sm:gap-3">
-          <a className="rounded-xl bg-white px-5 py-3 text-center text-sm font-medium text-black transition hover:bg-zinc-200" href="#experience">查看实践经历</a>
+          <a className="rounded-xl bg-white px-5 py-3 text-center text-sm font-medium text-black transition hover:bg-zinc-200" href="#experience">查看工作经历</a>
           <a className="rounded-xl bg-white px-5 py-3 text-center text-sm font-medium text-black transition hover:bg-zinc-200" href="#leadership">查看校园经历</a>
           <a className="inline-flex items-center justify-center gap-2 rounded-xl border border-cyan-400/25 bg-cyan-400/10 px-5 py-3 text-sm font-medium text-cyan-100 transition hover:bg-cyan-400/15" href={`mailto:${profile.email}`}>
             联系我 <Mail size={16} />
@@ -149,7 +149,7 @@ function Education() {
 
 function Experience() {
   return (
-    <Section id="experience" title="实践经历">
+    <Section id="experience" title="工作经历">
       <div className="space-y-5">
         {experiences.map((item) => (
           <Reveal key={item.org}>
