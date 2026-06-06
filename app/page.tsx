@@ -3,7 +3,7 @@ import { ArrowDown, Download, Mail, MapPin } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { MotionDiv, Reveal } from "@/components/Motion";
 import { Card, Section, Tags } from "@/components/ui";
-import { aboutCards, aboutIntro, education, experiences, leadership, profile, profileCard, projectSummary, projects, skills } from "@/data/profile";
+import { aboutCards, aboutIntro, competitions, education, experiences, leadership, profile, profileCard, projectSummary, projects, skills } from "@/data/profile";
 
 function EmText({ text }: { text: string }) {
   const parts = text.split(/(\*\*.*?\*\*)/g);
@@ -47,6 +47,7 @@ export default function Home() {
         <Experience />
         <Leadership />
         <Projects />
+        <Competitions />
         <Skills />
         <Contact />
         <footer className="border-t border-line py-10 text-sm text-zinc-500">
@@ -75,6 +76,7 @@ function Hero() {
         <div className="mt-6 grid gap-2.5 sm:mt-8 sm:flex sm:flex-wrap sm:gap-3">
           <a className="rounded-xl bg-white px-5 py-3 text-center text-sm font-medium text-black transition hover:bg-zinc-200" href="#experience">查看工作经历</a>
           <a className="rounded-xl bg-white px-5 py-3 text-center text-sm font-medium text-black transition hover:bg-zinc-200" href="#leadership">查看校园经历</a>
+          <a className="rounded-xl bg-white px-5 py-3 text-center text-sm font-medium text-black transition hover:bg-zinc-200" href="#projects">查看项目经历</a>
           <a className="inline-flex items-center justify-center gap-2 rounded-xl border border-cyan-400/25 bg-cyan-400/10 px-5 py-3 text-sm font-medium text-cyan-100 transition hover:bg-cyan-400/15" href={`mailto:${profile.email}`}>
             联系我 <Mail size={16} />
           </a>
@@ -175,7 +177,7 @@ function Experience() {
 
 function Projects() {
   return (
-    <Section id="projects" title="学术与竞赛">
+    <Section id="projects" title="项目经历">
       <Reveal>
         <Card className="mb-4">
           <p className="text-xs text-accent sm:text-sm">{projectSummary.title}</p>
@@ -186,6 +188,25 @@ function Projects() {
         {projects.map((p, i) => (
           <Reveal key={p.title} delay={i * 0.04}>
             <Card className={i === 0 ? "md:row-span-2" : ""}>
+              <p className="text-xs text-accent sm:text-sm">{p.subtitle}</p>
+              <h3 className="mt-2 text-lg font-semibold leading-snug text-white sm:mt-3 sm:text-xl">{p.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-zinc-400 sm:mt-4 sm:text-base"><EmText text={p.text} /></p>
+              <div className="mt-5"><Tags items={p.tags} /></div>
+            </Card>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Competitions() {
+  return (
+    <Section id="competitions" title="竞赛经历">
+      <div className="grid gap-4 md:grid-cols-2">
+        {competitions.map((p, i) => (
+          <Reveal key={p.title} delay={i * 0.04}>
+            <Card>
               <p className="text-xs text-accent sm:text-sm">{p.subtitle}</p>
               <h3 className="mt-2 text-lg font-semibold leading-snug text-white sm:mt-3 sm:text-xl">{p.title}</h3>
               <p className="mt-3 text-sm leading-7 text-zinc-400 sm:mt-4 sm:text-base"><EmText text={p.text} /></p>
