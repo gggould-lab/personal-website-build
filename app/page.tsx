@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { ArrowDown, Download, Mail, MapPin } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { MotionDiv, Reveal } from "@/components/Motion";
@@ -7,13 +7,26 @@ import { aboutCards, aboutIntro, competitions, education, experiences, leadershi
 
 function EmText({ text }: { text: string }) {
   const parts = text.split(/(\*\*.*?\*\*)/g);
+  const renderPlainText = (value: string, keyPrefix: string) => {
+    const urlParts = value.split(/(https?:\/\/[^\s，。；、]+)/g);
+    return urlParts.map((part, index) =>
+      part.startsWith("http") ? (
+        <a key={`${keyPrefix}-${index}`} href={part} target="_blank" rel="noreferrer" className="text-cyan-200 underline decoration-cyan-400/40 underline-offset-4 transition hover:text-cyan-100">
+          {part}
+        </a>
+      ) : (
+        <span key={`${keyPrefix}-${index}`}>{part}</span>
+      )
+    );
+  };
+
   return (
     <>
       {parts.map((part, index) =>
         part.startsWith("**") && part.endsWith("**") ? (
           <strong key={index} className="font-semibold text-white">{part.slice(2, -2)}</strong>
         ) : (
-          <span key={index}>{part}</span>
+          renderPlainText(part, String(index))
         )
       )}
     </>
@@ -190,7 +203,7 @@ function Projects() {
             <Card className={i === 0 ? "md:row-span-2" : ""}>
               <p className="text-xs text-accent sm:text-sm">{p.subtitle}</p>
               <h3 className="mt-2 text-lg font-semibold leading-snug text-white sm:mt-3 sm:text-xl">{p.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-zinc-400 sm:mt-4 sm:text-base"><EmText text={p.text} /></p>
+              <p className="mt-3 whitespace-pre-line text-sm leading-7 text-zinc-400 sm:mt-4 sm:text-base"><EmText text={p.text} /></p>
               <div className="mt-5"><Tags items={p.tags} /></div>
             </Card>
           </Reveal>
@@ -209,7 +222,7 @@ function Competitions() {
             <Card>
               <p className="text-xs text-accent sm:text-sm">{p.subtitle}</p>
               <h3 className="mt-2 text-lg font-semibold leading-snug text-white sm:mt-3 sm:text-xl">{p.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-zinc-400 sm:mt-4 sm:text-base"><EmText text={p.text} /></p>
+              <p className="mt-3 whitespace-pre-line text-sm leading-7 text-zinc-400 sm:mt-4 sm:text-base"><EmText text={p.text} /></p>
               <div className="mt-5"><Tags items={p.tags} /></div>
             </Card>
           </Reveal>
@@ -282,3 +295,4 @@ function Contact() {
     </Section>
   );
 }
+
