@@ -3,7 +3,7 @@ import { ArrowDown, Download, Mail, MapPin } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { MotionDiv, Reveal } from "@/components/Motion";
 import { Card, Section, Tags } from "@/components/ui";
-import { aboutCards, aboutIntro, competitions, education, experiences, leadership, profile, profileCard, projectSummary, projects, skills } from "@/data/profile";
+import { aboutCards, aboutIntro, competitionSummary, competitions, education, experiences, leadership, profile, profileCard, projectSummary, projects, skills } from "@/data/profile";
 
 function EmText({ text }: { text: string }) {
   const parts = text.split(/(\*\*.*?\*\*)/g);
@@ -153,7 +153,7 @@ function Education() {
               <p className="text-xs text-accent sm:text-sm">{item.time}</p>
               <h3 className="mt-2 text-lg font-semibold leading-snug text-white sm:mt-3 sm:text-xl">{item.school}</h3>
               <p className="mt-1 text-sm text-zinc-300 sm:text-base">{item.degree}</p>
-              <p className="mt-3 text-sm leading-7 text-zinc-400 sm:mt-4 sm:text-base"><EmText text={item.text} /></p>
+              <p className="mt-3 whitespace-pre-line text-sm leading-7 text-zinc-400 sm:mt-4 sm:text-base"><EmText text={item.text} /></p>
             </Card>
           </Reveal>
         ))}
@@ -203,6 +203,7 @@ function Projects() {
             <Card className={i === 0 ? "md:row-span-2" : ""}>
               <p className="text-xs text-accent sm:text-sm">{p.subtitle}</p>
               <h3 className="mt-2 text-lg font-semibold leading-snug text-white sm:mt-3 sm:text-xl">{p.title}</h3>
+              <p className="mt-1 text-sm text-zinc-400 sm:text-base">{p.role}</p>
               <p className="mt-3 whitespace-pre-line text-sm leading-7 text-zinc-400 sm:mt-4 sm:text-base"><EmText text={p.text} /></p>
               <div className="mt-5"><Tags items={p.tags} /></div>
             </Card>
@@ -216,12 +217,19 @@ function Projects() {
 function Competitions() {
   return (
     <Section id="competitions" title="竞赛经历">
+      <Reveal>
+        <Card className="mb-4">
+          <p className="text-xs text-accent sm:text-sm">{competitionSummary.title}</p>
+          <p className="mt-3 text-sm leading-7 text-zinc-300 sm:text-base"><EmText text={competitionSummary.text} /></p>
+        </Card>
+      </Reveal>
       <div className="grid gap-4 md:grid-cols-2">
         {competitions.map((p, i) => (
           <Reveal key={p.title} delay={i * 0.04}>
             <Card>
               <p className="text-xs text-accent sm:text-sm">{p.subtitle}</p>
               <h3 className="mt-2 text-lg font-semibold leading-snug text-white sm:mt-3 sm:text-xl">{p.title}</h3>
+              <p className="mt-1 text-sm text-zinc-400 sm:text-base">{p.role}</p>
               <p className="mt-3 whitespace-pre-line text-sm leading-7 text-zinc-400 sm:mt-4 sm:text-base"><EmText text={p.text} /></p>
               <div className="mt-5"><Tags items={p.tags} /></div>
             </Card>
@@ -295,4 +303,5 @@ function Contact() {
     </Section>
   );
 }
+
 
