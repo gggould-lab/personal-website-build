@@ -48,6 +48,24 @@ function PointText({ text }: { text: string }) {
   return <EmText text={text} />;
 }
 
+function BulletText({ text, className = "text-zinc-400" }: { text: string; className?: string }) {
+  const lines = text.split("\n").filter(Boolean);
+  if (lines.length <= 1) {
+    return <p className={`mt-3 text-sm leading-7 sm:mt-4 sm:text-base ${className}`}><EmText text={text} /></p>;
+  }
+
+  return (
+    <ul className={`mt-3 space-y-2.5 text-sm leading-7 sm:mt-4 sm:text-base ${className}`}>
+      {lines.map((line) => (
+        <li key={line} className="flex gap-2">
+          <span className="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300/80" />
+          <span><EmText text={line} /></span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function Home() {
   return (
     <main className="site-bg min-h-screen overflow-hidden">
@@ -153,7 +171,7 @@ function Education() {
               <p className="text-xs text-accent sm:text-sm">{item.time}</p>
               <h3 className="mt-2 text-lg font-semibold leading-snug text-white sm:mt-3 sm:text-xl">{item.school}</h3>
               <p className="mt-1 text-sm text-zinc-300 sm:text-base">{item.degree}</p>
-              <p className="mt-3 whitespace-pre-line text-sm leading-7 text-zinc-400 sm:mt-4 sm:text-base"><EmText text={item.text} /></p>
+              <BulletText text={item.text} />
             </Card>
           </Reveal>
         ))}
@@ -194,7 +212,7 @@ function Projects() {
       <Reveal>
         <Card className="mb-4">
           <p className="text-xs text-accent sm:text-sm">{projectSummary.title}</p>
-          <p className="mt-3 text-sm leading-7 text-zinc-300 sm:text-base"><EmText text={projectSummary.text} /></p>
+          <BulletText text={projectSummary.text} className="text-zinc-300" />
         </Card>
       </Reveal>
       <div className="grid gap-4 md:grid-cols-2">
@@ -204,7 +222,7 @@ function Projects() {
               <p className="text-xs text-accent sm:text-sm">{p.subtitle}</p>
               <h3 className="mt-2 text-lg font-semibold leading-snug text-white sm:mt-3 sm:text-xl">{p.title}</h3>
               <p className="mt-1 text-sm text-zinc-400 sm:text-base">{p.role}</p>
-              <p className="mt-3 whitespace-pre-line text-sm leading-7 text-zinc-400 sm:mt-4 sm:text-base"><EmText text={p.text} /></p>
+              <BulletText text={p.text} />
               <div className="mt-5"><Tags items={p.tags} /></div>
             </Card>
           </Reveal>
@@ -220,7 +238,7 @@ function Competitions() {
       <Reveal>
         <Card className="mb-4">
           <p className="text-xs text-accent sm:text-sm">{competitionSummary.title}</p>
-          <p className="mt-3 text-sm leading-7 text-zinc-300 sm:text-base"><EmText text={competitionSummary.text} /></p>
+          <BulletText text={competitionSummary.text} className="text-zinc-300" />
         </Card>
       </Reveal>
       <div className="grid gap-4 md:grid-cols-2">
@@ -230,7 +248,7 @@ function Competitions() {
               <p className="text-xs text-accent sm:text-sm">{p.subtitle}</p>
               <h3 className="mt-2 text-lg font-semibold leading-snug text-white sm:mt-3 sm:text-xl">{p.title}</h3>
               <p className="mt-1 text-sm text-zinc-400 sm:text-base">{p.role}</p>
-              <p className="mt-3 whitespace-pre-line text-sm leading-7 text-zinc-400 sm:mt-4 sm:text-base"><EmText text={p.text} /></p>
+              <BulletText text={p.text} />
               <div className="mt-5"><Tags items={p.tags} /></div>
             </Card>
           </Reveal>
