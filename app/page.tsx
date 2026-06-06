@@ -51,14 +51,14 @@ function PointText({ text }: { text: string }) {
 function BulletText({ text, className = "text-zinc-400" }: { text: string; className?: string }) {
   const lines = text.split("\n").filter(Boolean);
   if (lines.length <= 1) {
-    return <p className={`mt-3 text-sm leading-7 sm:mt-4 sm:text-base ${className}`}><EmText text={text} /></p>;
+    return <p className={`mt-3 text-sm leading-6 sm:mt-4 ${className}`}><EmText text={text} /></p>;
   }
 
   return (
-    <ul className={`mt-3 space-y-2.5 text-sm leading-7 sm:mt-4 sm:text-base ${className}`}>
+    <ul className={`mt-3 space-y-2 text-sm leading-6 sm:mt-4 ${className}`}>
       {lines.map((line) => (
         <li key={line} className="flex gap-2">
-          <span className="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300/80" />
+          <span className="shrink-0 text-zinc-400">·</span>
           <span><EmText text={line} /></span>
         </li>
       ))}
@@ -194,7 +194,12 @@ function Experience() {
               </div>
               <div className="space-y-4">
                 <ul className="space-y-2 text-sm leading-6 text-zinc-400 sm:leading-7">
-                  {item.points.map((p) => <li key={p}>· <PointText text={p} /></li>)}
+                  {item.points.map((p) => (
+                    <li key={p} className="flex gap-2">
+                      <span className="shrink-0 text-zinc-400">·</span>
+                      <span><PointText text={p} /></span>
+                    </li>
+                  ))}
                 </ul>
                 <Tags items={item.tags} />
               </div>
@@ -269,7 +274,12 @@ function Leadership() {
               <h3 className="mt-2 font-semibold leading-snug text-white sm:mt-3">{item.org}</h3>
               <p className="mt-1 text-sm text-zinc-400">{item.role}</p>
               <ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-400">
-                {item.points.map((p) => <li key={p}>· <EmText text={p} /></li>)}
+                {item.points.map((p) => (
+                  <li key={p} className="flex gap-2">
+                    <span className="shrink-0 text-zinc-400">·</span>
+                    <span><EmText text={p} /></span>
+                  </li>
+                ))}
               </ul>
               <div className="mt-5"><Tags items={item.tags} /></div>
             </Card>
