@@ -66,6 +66,17 @@ function BulletText({ text, className = "text-zinc-400" }: { text: string; class
   );
 }
 
+function ParagraphText({ text, className = "text-zinc-400" }: { text: string; className?: string }) {
+  const lines = text.split("\n").filter(Boolean);
+  return (
+    <div className={`mt-3 space-y-2 text-sm leading-6 sm:mt-4 ${className}`}>
+      {lines.map((line) => (
+        <p key={line}><EmText text={line} /></p>
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="site-bg min-h-screen overflow-hidden">
@@ -250,10 +261,11 @@ function Competitions() {
         {competitions.map((p, i) => (
           <Reveal key={p.title} delay={i * 0.04}>
             <Card>
+              <p className="text-xs text-accent sm:text-sm">{p.time}</p>
               <p className="text-xs text-accent sm:text-sm">{p.subtitle}</p>
               <h3 className="mt-2 text-lg font-semibold leading-snug text-white sm:mt-3 sm:text-xl">{p.title}</h3>
               <p className="mt-1 text-sm text-zinc-400 sm:text-base">{p.role}</p>
-              <BulletText text={p.text} />
+              <ParagraphText text={p.text} />
               <div className="mt-5"><Tags items={p.tags} /></div>
             </Card>
           </Reveal>
