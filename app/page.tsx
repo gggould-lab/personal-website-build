@@ -77,6 +77,17 @@ function ParagraphText({ text, className = "text-zinc-400" }: { text: string; cl
   );
 }
 
+function PointParagraphText({ text }: { text: string }) {
+  const lines = text.split("\n").filter(Boolean);
+  return (
+    <div className="space-y-1.5">
+      {lines.map((line) => (
+        <p key={line}><PointText text={line} /></p>
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="site-bg min-h-screen overflow-hidden">
@@ -208,7 +219,7 @@ function Experience() {
                   {item.points.map((p) => (
                     <li key={p} className="flex gap-2">
                       <span className="shrink-0 text-zinc-400">·</span>
-                      <span><PointText text={p} /></span>
+                      <PointParagraphText text={p} />
                     </li>
                   ))}
                 </ul>
