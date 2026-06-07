@@ -340,7 +340,7 @@ function Contact() {
             <p>我也欢迎与数字贸易、国际商务、平台经济和内容运营相关的交流机会。</p>
             <div className="grid gap-2.5 pt-2 sm:flex sm:flex-wrap sm:gap-3">
               <a className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-center text-sm font-medium text-black transition hover:bg-zinc-200" href={`mailto:${profile.email}`}><Mail size={16} /> 发送邮件</a>
-              <a className="inline-flex items-center justify-center gap-2 rounded-xl border border-line px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10" href="/resume.png" download><Download size={16} /> 下载简历</a>
+              <a className="inline-flex items-center justify-center gap-2 rounded-xl border border-line px-5 py-3 text-sm font-medium text-white transition hover:bg-white/10" href="/resume.pdf" download><Download size={16} /> 下载简历</a>
             </div>
           </div>
           <div className="space-y-4 text-sm">
